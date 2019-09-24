@@ -7,6 +7,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <errno.h>
+# include <stdio.h>
 
 # define EAST 0xCE127A
 # define NORTH 0x12C996

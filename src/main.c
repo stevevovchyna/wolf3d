@@ -57,12 +57,38 @@ void	dooom(t_wolf *wolf)
 	mlx_destroy_window(MLX, WIN);
 }
 
+int			check_extension(char *s)
+{
+	char	*pointer;
+	int		result;
+
+	pointer = ft_strrchr(s, '.');
+	if (pointer == NULL)
+	{
+		return (1);
+	}
+	result = ft_strcmp(pointer, ".wolf");
+	if (result == 0)
+	{
+		return (0);
+	}
+	else
+	{
+		return (1);
+	}
+}
+
 int			main(int argc, char **argv)
 {
 	t_wolf	*wolf;
 
 	if (argc == 2 && argv[1])
 	{
+		if (check_extension(argv[1]))
+		{
+			ft_putendl("error: map file should have a '.wolf' extension");
+			return (0);
+		}
 		if ((wolf = init(argv[1])) == NULL)
 			return (0);
 		dooom(wolf);

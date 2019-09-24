@@ -21,17 +21,23 @@ char	*concat(char *str1, char *str2)
 int		check_borders(char *buffer)
 {
 	int 	i;
+	int		m;
+	int		k;
 
 	i = -1;
 	while (buffer[++i] != '\n')
 		BUF_RET(i);
+	m = i - 1;
+	k = i + 1;
 	while (buffer[i])
 	{
 		i++;
 		BUF_RET(i);
-		while (buffer[++i] != '\0' && buffer[i] != '\n')
-			;
-		BUF_RET(i - 1);
+		while (i < ((m + k)))
+			i++;
+		BUF_RET(i);
+		i++;
+		m += k;
 	}
 	while (buffer[--i] != '\n')
 		BUF_RET(i);
@@ -56,7 +62,7 @@ int		check_map(char *buffer)
 	}
 	if (check_borders(buffer) == -1)
 	{
-		ft_putendl("error: your map must have borders");
+		ft_putendl("error: your map must have descent rectangular borders");
 		return (-1);
 	}
 	return (0);
